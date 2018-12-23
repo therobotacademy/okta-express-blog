@@ -8,17 +8,20 @@ const okta = require("@okta/okta-sdk-nodejs");
 const session = require("express-session");
 const ExpressOIDC = require("@okta/oidc-middleware").ExpressOIDC;
 
-// const auth = require("./auth");
+const auth = require("./auth");
 const blogRouter = require("./routes/blog");
 const usersRouter = require("./routes/users");
 
 
 // App initialization
 const app = express();
+
+/* THIS IS ENCAPSULATED WITHIN 'auth.js'
 const client = new okta.Client({
   orgUrl: process.env.OKTA_ORG_URL,
   token: process.env.OKTA_TOKEN
 });
+*/
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");

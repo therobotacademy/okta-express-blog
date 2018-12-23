@@ -43,6 +43,25 @@ Go to your browser and access the recently launched Express website:
 
 `http://localhost:3000`
 
+All of your edits will be stored in a SQLite database located at:
+
+`./database.sqlite`
+
+As defined in file `./model.js`
+
+To kill the server:
+```
+$ ps aux | grep "node ./bin/www"
+```
+Take note of the PID and do:
+```
+$ kill -9 <PID>
+```
+Or faster but more aggressive:
+```
+$ killall node
+```   
+
 # Initialize Authentication
 [Back to index](#Index)
 

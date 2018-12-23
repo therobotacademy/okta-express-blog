@@ -9,6 +9,7 @@ const Promise = require("bluebird");
 
 const router = express.Router();
 
+/* THIS IS ENCAPSULATED WITHIN 'helpers.js'
 // Only let the user access the route if they are authenticated.
 function ensureAuthenticated(req, res, next) {
   if (!req.user) {
@@ -17,6 +18,7 @@ function ensureAuthenticated(req, res, next) {
 
   next();
 }
+*/
 
 // Render the home page and list all blog posts
 router.get("/", (req, res) => {

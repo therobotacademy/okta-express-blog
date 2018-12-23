@@ -1,6 +1,6 @@
 const async = require("async");
 const express = require("express");
-// const auth = require("../auth");
+const auth = require("../auth");
 const helpers = require("../helpers");
 const okta = require("@okta/okta-sdk-nodejs");
 const sequelize = require("sequelize");
@@ -8,7 +8,8 @@ const slugify = require("slugify");
 
 const models = require("../models");
 
-// const Promise = require("bluebird");
+// Not sure if this module is used
+const Promise = require("bluebird");
 
 const client = new okta.Client({
   orgUrl: process.env.OKTA_ORG_URL,

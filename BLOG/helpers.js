@@ -20,5 +20,4 @@ function getDB() {
   return db;
 }
 
-
 module.exports = { ensureAuthenticated, getDB };
