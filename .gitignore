@@ -1,2 +1,4 @@
 *.sqlite
 .envrc
+.env
+node_modules

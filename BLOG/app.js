@@ -1,16 +1,24 @@
+require('dotenv').config(); 
+
 const createError = require("http-errors");
 const express = require("express");
 const logger = require("morgan");
 const path = require("path");
+const okta = require("@okta/okta-sdk-nodejs");
 const session = require("express-session");
 const ExpressOIDC = require("@okta/oidc-middleware").ExpressOIDC;
 
-const auth = require("./auth");
+// const auth = require("./auth");
 const blogRouter = require("./routes/blog");
 const usersRouter = require("./routes/users");
 
+
 // App initialization
 const app = express();
+const client = new okta.Client({
+  orgUrl: process.env.OKTA_ORG_URL,
+  token: process.env.OKTA_TOKEN
+});
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
@@ -39,7 +47,7 @@ const oidc = new ExpressOIDC({
 });
 
 app.use(session({
-  secret: process.env.SECRET,
+  secret: process.env.OKTA_SECRET,
   resave: true,
   saveUninitialized: false
 }));

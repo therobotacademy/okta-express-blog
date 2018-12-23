@@ -1,14 +1,23 @@
 const async = require("async");
 const express = require("express");
-const auth = require("../auth");
+// const auth = require("../auth");
 const helpers = require("../helpers");
-const models = require("../models");
+const okta = require("@okta/okta-sdk-nodejs");
 const sequelize = require("sequelize");
 const slugify = require("slugify");
-const Promise = require("bluebird");
+
+const models = require("../models");
+
+// const Promise = require("bluebird");
+
+const client = new okta.Client({
+  orgUrl: process.env.OKTA_ORG_URL,
+  token: process.env.OKTA_TOKEN
+});
 
 const router = express.Router();
 
+/* Function 'ensureAuthenticated' is configured within './helpers.js' file
 // Only let the user access the route if they are authenticated.
 function ensureAuthenticated(req, res, next) {
   if (!req.user) {
@@ -17,6 +26,7 @@ function ensureAuthenticated(req, res, next) {
 
   next();
 }
+*/
 
 // Render the home page and list all blog posts
 router.get("/", (req, res) => {
@@ -150,7 +160,8 @@ router.post("/:slug/edit", helpers.ensureAuthenticated, (req, res, next) => {
   });
 });
 
-// Delete a post
+// Delete a post DOES NOT IMCLUDE Helpers.ensureAuthenticated ????
+//??? router.post("/:slug/delete", helpers.ensureAuthenticated, (req, res, next) => {
 router.post("/:slug/delete", (req, res, next) => {
   models.Post.findOne({
     where: {
